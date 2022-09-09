@@ -1,5 +1,7 @@
 const URL = `http://${window.location.hostname}:5050`;
-let socket = io(URL, { path: '/real-time' });
+let socket = io(URL, {
+    path: '/real-time'
+});
 
 let character = {
     x: 0,
@@ -25,6 +27,7 @@ function draw() {
     textSize(24);
     text('🐁', whiteMouse.x, whiteMouse.y);
     eatsMouse();
+    fetchEat();
 }
 
 
@@ -44,10 +47,20 @@ function putMouseRandomPosition() {
 1) Include the socket method to listen to events and change the character position.
 You may want to use a Switch structure to listen for up, down, right and left cases.
 _____________________________________________ */
-
+async function changeDirection() {
+    const request = {
+        method: 'POST',
+        headers:{
+            "move" : "controller/json"
+        },
+        body: JSON.stringify(move)
+    }
+}
 
 /*___________________________________________
 
 2) Include the fetch method to post each time the snake eats a mouse
 _____________________________________________ */
-
+function fetchEat(){
+    await fetch(eatsMouse(), request);
+}

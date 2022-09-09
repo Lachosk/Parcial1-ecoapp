@@ -1,5 +1,7 @@
 const URL = `http://${window.location.hostname}:5050`;
-let socket = io(URL, { path: '/real-time' });
+let socket = io(URL, {
+    path: '/real-time'
+});
 
 function setup() {
     frameRate(16);
@@ -23,3 +25,8 @@ function draw() {
 
 1) Create a function that includes the socket method to emit the directions
 _____________________________________________ */
+
+function socketDirections() {
+    socket.emit('move', movementButton)
+    console.log("fantastico, no esta funcionando")
+}
